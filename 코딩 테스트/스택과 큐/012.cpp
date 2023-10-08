@@ -31,9 +31,19 @@ int main()
     vector<int> result (N, 0);
     
     for (int i = 1; i < N; i++){
-        while (!mystack.empty() && mystack.top() < seq[i]){
-            
+        while (!mystack.empty() && seq[mystack.top()] < seq[i]){
+            result[mystack.top()] = seq[i];
+            //cout << result[mystack.top()] << "[_]";
+            mystack.pop();  // 0
         }
+        mystack.push(i); //2
+    }
+    while (!mystack.empty()){
+        result[mystack.top()] = -1;
+        mystack.pop();
     }
     
+    for (int i = 0; i < N; i++){
+        cout << result[i] << " ";
+    }
 }
