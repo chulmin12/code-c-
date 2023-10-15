@@ -10,7 +10,8 @@
 
 #include <iostream>
 #include <vector>
-#include <climits>
+#include <algorithm>
+#include <numeric>
 
 using namespace std;
 
@@ -23,15 +24,19 @@ int main()
     int N;
     cin >> N;
     
-    vector<int> person(N, 0);
-    
+    vector<int> p(N, 0);
+    vector<int> res(N, 0);
     for (int i = 0; i < N; i++){
-        cin >> person[i];
+        cin >> p[i];
     }
     
-    // 삽입 정렬
-    for (int i = 1; i < N; i++){
-        
-    }
+    // 오름차순으로 계산하는게 최소합이된다.
+    sort(p.begin(),p.end());
     
+    int sum = 0;
+    for (int i = 0; i < N; i++){
+        sum = sum + p[i];  //1 3 6 9 13
+        res.push_back(sum);
+    }
+    cout << accumulate(res.begin(), res.end(),0) << "\n";
 }
